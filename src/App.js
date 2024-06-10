@@ -2,34 +2,32 @@ import React, { useState, useEffect } from 'react'
 import api from './api'
 
 const App = () => {
-  const [player, setPlayer] = useState({
-    name: '',
-    score: 0,
-    status: "NONE"
-  });
+  const [players, setPlayer] = useState([])
+
+  const fetchPlayer = async () => {
+    const response = await api.get('/player/');
+    setPlayer(response.data)
+  };
+
+
+  useEffect(() => {
+    fetchPlayer()
+  }, []);
   
+
   const [player1, setPlayer1] = useState({
     name: '',
     score: 0,
     status: "NONE"
   });
-  
+
   const [player2, setPlayer2] = useState({
     name: '',
     score: 0,
     status: "NONE"
   });
 
-  const fetchPlayer = async () => {
-    const response = await api.get('/player/');
-    setPlayer(response.data)
-  };
- 
-
-  useEffect(() => {
-    fetchPlayer();
-  }, []);
-
+  
 
   const handleInputChange1 = (e) => {
     setPlayer1({
@@ -43,18 +41,22 @@ const App = () => {
       ...player2,
       [e.target.name]: e.target.value,
     });
+    
   };
 
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     await api.post('/player/', player1);
-    fetchPlayer();
     await api.post('/player/', player2);
-    fetchPlayer();
+    
+    document.getElementById("blue").innerHTML = player1.name + " is : O";
+    document.getElementById("red").innerHTML = player2.name + " is : X";
+  };
 
-    document.getElementById("blue").innerHTML = player1.name+" is : O";
-    document.getElementById("red").innerHTML = player2.name+" is : X";
+  const updateScore = async () => {
+    await api.put('/player/'+player1.name, player1);
+    await api.put('/player/'+player2.name, player2);
   };
 
 
@@ -119,7 +121,7 @@ const App = () => {
   }
 
   function Tie() {
-    if(!finish){
+    if (!finish) {
 
       let k = 0;
       for (let i = 0; i < 3; i++) {
@@ -128,10 +130,10 @@ const App = () => {
             k++;
         }
       }
-      if(k==9){
+      if (k == 9) {
         document.getElementById("red").innerHTML = "";
-      document.getElementById("blue").innerHTML = "";
-      document.getElementById("winner").innerHTML = "DRAW";
+        document.getElementById("blue").innerHTML = "";
+        document.getElementById("winner").innerHTML = "DRAW";
       }
     }
   }
@@ -151,10 +153,15 @@ const App = () => {
     document.getElementById("blue").innerHTML = "";
 
     if (turn == 0) {
-      document.getElementById("winner").innerHTML = player1.name+" WON";
+      document.getElementById("winner").innerHTML = player1.name + " WON";
+      player1.status = "WIN";
+      player2.status = "LOSE";
     } else {
-      document.getElementById("winner").innerHTML = player2.name+" WON";
+      document.getElementById("winner").innerHTML = player2.name + " WON";
+      player2.status = "WIN";
+      player1.status = "LOSE";
     }
+    updateScore();
   }
 
   function startGame() {
@@ -330,6 +337,7 @@ const App = () => {
     Tie();
   }
 
+  
   return (
     <div>
 
@@ -375,13 +383,13 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {player.map((player) => (
-              <tr key={player.id}>
-                <td>{player.id}</td>
+            {players.map((player,i) => (
+              <tr>
+                <td>{i+1}</td>
                 <td>{player.name}</td>
                 <td>{player.score}</td>
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
       </div>
