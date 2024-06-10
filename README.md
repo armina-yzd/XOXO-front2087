@@ -1,86 +1,70 @@
-# Project Phase 2: React Development
+# Getting Started with Create React App
 
-Welcome to the second phase of your project! In this phase, you will be setting up a React application, developing a UI/UX based on a Figma design, and connecting the app to an API you created in the first phase.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Steps to Follow
+## Available Scripts
 
-### 1. Clone the Repository and Install Dependencies
+In the project directory, you can run:
 
-First, you need to clone the provided repository and install the necessary dependencies. Follow these steps:
+### `npm start`
 
-1. Open your terminal.
-2. Clone the repository:
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-   ```sh
-   git clone <repository-url>
-   cd <repository-directory>
-   ```
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-3. Install the dependencies:
+### `npm test`
 
-   ```sh
-   npm install
-   ```
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-4. Start the development server:
+### `npm run build`
 
-   ```sh
-   npm run dev
-   ```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-This will start the development server. You should see your React application running in your browser.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### 2. Develop the UI/UX from Figma Design
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Next, you will develop the UI/UX as specified in the provided Figma design. Follow the link below to access the design:
+### `npm run eject`
 
-[Figma Design for Gaming Website](https://www.figma.com/design/auNugnfKF5eREyI5PqGurR/gaming-website?node-id=0-1&t=29hCDtGGZFbYiKev-1)
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-1. Analyze the design and understand the components you need to create.
-2. Break down the design into reusable React components.
-3. Implement the components and ensure the layout matches the Figma design.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### 3. Connect to the API
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-Finally, you will connect your React application to the API that you developed in the first phase of this project.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-1. Ensure your API server is running.
-2. Use the `fetch` API to make API calls from your React components.
-3. Display the data retrieved from the API in your UI components.
+## Learn More
 
-Example of fetching data in a React component:
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-```js
-import React, { useEffect, useState } from "react";
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-const ExampleComponent = () => {
-  const [data, setData] = useState([]);
+### Code Splitting
 
-  useEffect(() => {
-    fetch("http://your-api-endpoint")
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
-  }, []);
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-  return (
-    <div>
-      {data.map((item) => (
-        <div key={item.id}>{item.name}</div>
-      ))}
-    </div>
-  );
-};
+### Analyzing the Bundle Size
 
-export default ExampleComponent;
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-## Additional Notes
+### Making a Progressive Web App
 
-- Make sure your project follows best practices for code structure and organization.
-- Pay attention to the responsiveness and accessibility of your design.
-- Test your application thoroughly to ensure all features work as expected.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-Happy coding!
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
