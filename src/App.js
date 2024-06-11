@@ -17,13 +17,11 @@ const App = () => {
 
   const [player1, setPlayer1] = useState({
     name: '',
-    score: 0,
     status: "NONE"
   });
 
   const [player2, setPlayer2] = useState({
     name: '',
-    score: 0,
     status: "NONE"
   });
 
@@ -55,8 +53,8 @@ const App = () => {
   };
 
   const updateScore = async () => {
-    await api.put('/player/'+player1.name, player1);
-    await api.put('/player/'+player2.name, player2);
+    await api.put('/player/', player1);
+    await api.put('/player/', player2);
   };
 
 
