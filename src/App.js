@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     fetchPlayer()
   }, []);
-  
+
 
   const [player1, setPlayer1] = useState({
     name: '',
@@ -25,7 +25,7 @@ const App = () => {
     status: "NONE"
   });
 
-  
+
 
   const handleInputChange1 = (e) => {
     setPlayer1({
@@ -39,7 +39,7 @@ const App = () => {
       ...player2,
       [e.target.name]: e.target.value,
     });
-    
+
   };
 
 
@@ -47,7 +47,7 @@ const App = () => {
     event.preventDefault();
     await api.post('/player/', player1);
     await api.post('/player/', player2);
-    
+
     document.getElementById("blue").innerHTML = player1.name + " is : O";
     document.getElementById("red").innerHTML = player2.name + " is : X";
   };
@@ -335,23 +335,26 @@ const App = () => {
     Tie();
   }
 
-  
+
   return (
     <div>
 
       {/* first page menu */}
       <div className='text-center container' id='menu'>
-        <h1 className='text-white my-4'><b>Tic-Tac-Toe</b></h1>
-        <button className='text-white' onClick={startGame}><h4>START</h4></button>
-        <div>
-          <button className='btn text-white mt-5' onClick={list}><h4>SCORES</h4></button>
+        <div className='pb-5'>
+          <h1 className='text-white my-4'><b>Tic-Tac-Toe</b></h1>
+          <button className='text-white' onClick={startGame}><h4>START</h4></button>
+          <div className='mb-5'>
+            <button className='btn text-white mt-5' onClick={list}><h4>SCORES</h4></button>
+          </div>
         </div>
+        <div className='prove pt-5'><b>Proved By Armina 2012</b></div>
       </div>
 
       {/* login two player */}
       <div className='text-center container' id='login'>
         <h1 className='text-white my-4'><b>Tic-Tac-Toe</b></h1>
-        <div className='container'>
+        <div className='container mb-5'>
           <form onSubmit={handleFormSubmit}>
             <h2 className='text-white mb-5'>fill the Form</h2>
             <div className='mb-3 mt-3'>
@@ -365,6 +368,7 @@ const App = () => {
             </button>
           </form>
         </div>
+        <div className='prove pt-5'><b>Proved By Armina 2012</b></div>
       </div>
 
 
@@ -381,9 +385,9 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-            {players.map((player,i) => (
+            {players.map((player, i) => (
               <tr>
-                <td>{i+1}</td>
+                <td>{i + 1}</td>
                 <td>{player.name}</td>
                 <td>{player.score}</td>
               </tr>
